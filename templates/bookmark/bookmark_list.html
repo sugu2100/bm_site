@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookmark</title>
+    <style>
+        table, th, td{
+            border: 1px solid #ccc;
+            border-collapse:collapse;
+            padding:10px;
+            margin:10px;
+        }
+        table thead{background: #eee;}
+        table a{
+            text-decoration:none;
+            color:#000;
+        }
+        table a:hover{text-decoration:underline;}
+        .add{margin:10px; color:#00f;}
+
+    </style>
+</head>
+<body>
+  <h2>북마크 리스트</h2>
+  <!-- 테이블 목록 만들기 -->
+  <table>
+      <thead>
+        <tr>
+            <th>번호</th><th>사이트 이름</th><th>URL</th><th>수정</th><th>삭제</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for bookmark in object_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'bookmark:detail' bookmark.id %}">{{ bookmark.site_name }}</a>
+            </td>
+            <td>
+                <a href="{{ bookmark.url }}">{{ bookmark.url }}</a>
+            </td>
+            <td>
+                <a href="{% url 'bookmark:update' bookmark.id %}">수정</a>
+            </td>
+            <td>
+                <a href="{% url 'bookmark:delete' bookmark.id %}">삭제</a>
+            </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+
+  <div class="add">
+      <a href="{% url 'bookmark:create' %}">북마크 추가</a>
+  </div>
+
+  <!--
+  {% for bookmark in object_list %}
+    <h4>사이트 이름 : {{ bookmark.site_name }},
+        주소 : <a href="{{ bookmark.url }}">{{ bookmark.url }}</a>
+    </h4>
+  {% endfor %}
+  -->
+</body>
+</html>

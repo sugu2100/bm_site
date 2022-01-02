@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookmark</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>{{ object }}를 정말로 삭제 하시겠습니까?</p>
+        <input type="submit" value="삭제하기">
+    </form>
+</body>
+</html>
